@@ -1,5 +1,5 @@
 let
-  pkgs = import (builtins.fetchGit { url = https://github.com/dezgeg/nixpkgs.git; ref = "fpm-fixes"; }) { };
+  pkgs = import (builtins.fetchGit { url = https://github.com/NixOS/nixpkgs-channels.git; ref = "nixos-19.03"; }) { };
   nix = (import ./nix/release.nix {}).build.x86_64-linux;
   tarball = (import ./nix/release.nix {}).binaryTarball.x86_64-linux;
   closureInfo = pkgs.closureInfo { rootPaths = [ nix ]; };
@@ -97,7 +97,7 @@ let
         --input-type dir \
         --output-type ${outputFormat} \
         --name nix \
-        --version 2.0 \
+        --version 2.2.2 \
         --maintainer "Eelco Dolstra <eelco.dolstra@logicblox.com>" \
         --vendor NixOS \
         --url https://nixos.org/nix/ \
