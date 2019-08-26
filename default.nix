@@ -1,5 +1,5 @@
 let
-  pkgs = import (builtins.fetchGit { url = https://github.com/NixOS/nixpkgs-channels.git; ref = "nixos-19.03"; }) { };
+  pkgs = import (builtins.fetchGit { url = https://github.com/pszubiak/nixpkgs-channels.git; ref = "19.03-fpm-fix"; }) { };
   nix = (import ./nix/release.nix {}).build.x86_64-linux;
   tarball = (import ./nix/release.nix {}).binaryTarball.x86_64-linux;
   closureInfo = pkgs.closureInfo { rootPaths = [ nix ]; };
