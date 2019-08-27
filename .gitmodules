@@ -1,4 +1,0 @@
-[submodule "nix"]
-	path = nix
-	url = https://github.com/NixOS/nix.git
-	branch = 2.2-maintenance
