@@ -4,15 +4,18 @@ set -e
 storedir=/nix/store
 localstatedir=/nix/var/nix
 nix=/opt/nix-multiuser/nix
+groupid=4717
+baseid=6250
 
 # Setup build users
 if ! getent group "nixbld" >/dev/null; then
-  groupadd -r "nixbld"
+  groupadd -r "nixbld" -g "$groupid"
 fi
 
 for i in $(seq 32); do
   if ! getent passwd "nixbld$i" >/dev/null; then
-    useradd -r -g "nixbld" -G "nixbld" -d /var/empty \
+    let uid=$baseid+$i
+    useradd -r -g "nixbld" -G "nixbld" -u "$uid" -d /var/empty \
       -s /sbin/nologin \
       -c "Nix build user $i" "nixbld$i"
   fi
